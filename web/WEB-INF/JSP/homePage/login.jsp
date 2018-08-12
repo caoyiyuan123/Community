@@ -30,6 +30,7 @@
     <span class="logo-span">VMS社区</span>
 </div>
 <div class="login_box" style="overflow: scroll;width: 100%;height: 400px">
+    <form action="${pageContext.request.contextPath}/AfterLogin" method="post">
     <table class="table" cellspacing="10px">
         <tr>
             <th class="login_info">账号：</th>
@@ -76,6 +77,7 @@
             <td></td>
         </tr>
     </table>
+    </form>
 </div>
 </body>
 </html>
