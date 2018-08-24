@@ -14,6 +14,6 @@ public class IndexController {
     @RequestMapping("/AfterLogin")
     public String enter(){
         System.out.println("123456");
-        return "FirstPage/MainPage";
+        return "MainPage/MainPage";
     }
 }

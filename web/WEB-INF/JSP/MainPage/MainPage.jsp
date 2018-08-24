@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>达内－NetCTOSS</title>
+    <title>主页面</title>
     <link type="text/css" rel="stylesheet" media="all" href="../../../styles/whole.css" />
     <link type="text/css" rel="stylesheet" media="all" href="../../../styles/MainPage/mainPage.css" />
 </head>
@@ -14,7 +14,7 @@
     <input class="search_context" type="text" value="" placeholder="你想知道的这里都有">
     <input class="search_button" type="button" value=""/>
     <button class="login_btn"><a href="${pageContext.request.contextPath}/login">登录</a></button>
-    <button class="register_btn"><a href="${pageContext.request.contextPath}/login">注册</a></button>
+    <button class="register_btn"><a href="${pageContext.request.contextPath}/register">注册</a></button>
 </div>
 
 
@@ -37,7 +37,7 @@
                 <tbody>
                     <tr>
                         <td class="id">1</td>
-                        <td class="title">足球</td>
+                        <td class="title"><a href="${pageContext.request.contextPath}/content_check">足球</a></td>
                         <td class="author">天下足球</td>
                         <td class="click">102</td>
                         <td class="answer">25</td>
