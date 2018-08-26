@@ -34,7 +34,7 @@
         <table class="table" cellspacing="10px">
             <tr>
                 <th class="login_info">账号：</th>
-                <td colspan="2"><input id="username" name="username" type="text" class="width150" placeholder="6~10长度的字母、数字和下划线"/></td>
+                <td colspan="2"><input id="username" name="username" type="text" class="width150" placeholder="6~10长度的中文字符"/></td>
                 <td>
                     <div class="div" id="username_div">
                         <img src="../../../images/fail2.png">

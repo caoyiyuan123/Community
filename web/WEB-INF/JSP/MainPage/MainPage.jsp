@@ -7,14 +7,38 @@
     <title>主页面</title>
     <link type="text/css" rel="stylesheet" media="all" href="../../../styles/whole.css" />
     <link type="text/css" rel="stylesheet" media="all" href="../../../styles/MainPage/mainPage.css" />
+    <script type="text/javascript" src="../../../js/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="../../../js/community/MainPage.js"></script>
+    <style type="text/css">
+        .userImg{
+             width:50px;
+             height: 50px;
+             border-radius: 50%;
+             position: relative;
+             left:400px;
+         }
+        .welcome{
+            position: relative;
+            left:400px;
+            top:-18px;
+            font-family: "微软雅黑", sans-serif;
+            font-size: 15px;
+            color:white;
+        }
+        .search{
+            position: relative;
+        }
+    </style>
 </head>
 <body>
 <!--主要区域开始-->
 <div class="search">
     <input class="search_context" type="text" value="" placeholder="你想知道的这里都有">
     <input class="search_button" type="button" value=""/>
-    <button class="login_btn"><a href="${pageContext.request.contextPath}/login">登录</a></button>
-    <button class="register_btn"><a href="${pageContext.request.contextPath}/register">注册</a></button>
+    <a href="${pageContext.request.contextPath}/personal/modifyImage"><img class="userImg" id="userImg" src=""></a>
+    <span class="welcome">${sessionScope.username}</span>
+    <%--<button class="login_btn"><a href="${pageContext.request.contextPath}/login">登录</a></button>--%>
+    <%--<button class="register_btn"><a href="${pageContext.request.contextPath}/register">注册</a></button>--%>
 </div>
 
 

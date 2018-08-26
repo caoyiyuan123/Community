@@ -24,7 +24,8 @@ function username_check() {
             var $span = $username_div.find("span").eq(0);
             console.log($span);
             var $img = $username_div.find("img").eq(0);
-            var reg = /^[a-zA-Z_][a-zA-Z_0-9]{5,9}$/;
+            // var reg = /^[a-zA-Z_][a-zA-Z_0-9]{5,9}$/;
+            var reg = /^[\u4E00-\u9FA5\uF900-\uFA2D]{6,10}$/;
             /**匹配未输入任何内容*/
             if(content.length === 0){
                 $span.css("display","inline");

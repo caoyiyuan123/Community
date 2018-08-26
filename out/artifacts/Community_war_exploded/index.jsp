@@ -11,6 +11,6 @@
     <title>$Title$</title>
   </head>
   <body>
-    <jsp:forward page="/register/registerIndex"/>
+    <jsp:forward page="/WEB-INF/JSP/homePage/register.jsp"/>
   </body>
 </html>

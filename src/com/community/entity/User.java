@@ -10,6 +10,15 @@ public class User {
     private Integer id; //ID
     private String username;//用户名
     private String password; //密码
+    private String imageAddress; //用户头像
+
+    public String getImage() {
+        return imageAddress;
+    }
+
+    public void setImage(String imageAddress) {
+        this.imageAddress = imageAddress;
+    }
 
     public Integer getId() {
         return id;
@@ -41,6 +50,7 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", imageAddress='" + imageAddress + '\'' +
                 '}';
     }
 }

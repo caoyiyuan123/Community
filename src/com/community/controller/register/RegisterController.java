@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.crypto.Data;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -43,8 +44,8 @@ public class RegisterController {
      * @return
      */
     @RequestMapping("/registerSuccess")
-    public String success(HttpServletRequest request){
-
+    public String success(HttpServletRequest request) throws UnsupportedEncodingException {
+        request.setCharacterEncoding("utf-8");
         String username = request.getParameter("username");
         String password = request.getParameter("pwd");
         /**将用户名作为盐值*/
@@ -67,7 +68,7 @@ public class RegisterController {
         System.out.println(user.getUsername());
         System.out.println(user.getPassword());
         userService.save(user);
-        return "homePage/success";
+        return "homePage/login";
     }
 
     @RequestMapping("/registerIndex")

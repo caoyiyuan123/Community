@@ -17,4 +17,5 @@ public interface UserMapper {
     int add(User user);
     User findByName(String username);
     List<User> findAll();
+    String queryImage(String username);
 }

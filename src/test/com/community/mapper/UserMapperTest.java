@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
 public class UserMapperTest {
 
 
+
     @Autowired
     private UserMapper userMapper;
 
@@ -41,6 +42,13 @@ public class UserMapperTest {
     public void findByName() throws Exception {
         User user = userMapper.findByName("caoyiyuan");
         System.out.println(user);
+    }
+
+    @Test
+    public void queryImage() throws Exception {
+        String username="wangwu";
+        String address = userMapper.queryImage(username);
+        System.out.println(address);
     }
 
 }

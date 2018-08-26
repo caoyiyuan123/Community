@@ -17,6 +17,11 @@
         from t_user
         where username=#{username}
     </select>
+
+    <select id="queryImage" parameterType="String" resultType="String">
+        select t_user.imageAddress from t_user
+        where username = #{username}
+    </select>
 </mapper>
 
 
