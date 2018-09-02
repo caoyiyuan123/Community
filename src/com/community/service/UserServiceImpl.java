@@ -26,4 +26,5 @@ public class UserServiceImpl implements UserService {
     public User findByName(String username) {
         return userMapper.findByName(username);
     }
+
 }

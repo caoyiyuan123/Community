@@ -1,18 +1,17 @@
 package com.community.controller.login;
 
 import com.community.Utils.VerifyCodeUtils;
-import jdk.nashorn.internal.scripts.JO;
+import com.community.entity.Post;
+import com.community.entity.User;
+import com.community.mapper.PostMapper;
+import com.community.mapper.UserMapper;
 import net.sf.json.JSONObject;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.apache.tomcat.util.http.fileupload.FileItem;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
-import org.springframework.http.HttpRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -22,10 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Author: jack
@@ -36,21 +32,26 @@ import java.util.Map;
 @RequestMapping("/login")
 public class LoginController {
 
+    @Autowired(required = false)
+    private UserMapper userMapper;
+
+    @Autowired(required = false)
+    private PostMapper postMapper;
+
     @RequestMapping("/loginIndex")
     public String login(){
         return "homePage/login";
     }
 
     @RequestMapping("/loginCheck")
-    public String loinSuccess(HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException {
+    public String loinSuccess(HttpServletRequest request,HttpSession session) throws UnsupportedEncodingException {
         request.setCharacterEncoding("utf-8");
         //response.setContentType("html/text;charset=utf-8");
         String username = request.getParameter("username");
         String password = request.getParameter("pwd");
-        System.out.println("username:"+username+","+"password:"+password);
 
         /**利用Session取得用户名和密码*/
-        HttpSession session = request.getSession();
+         session = request.getSession();
                session.setAttribute("username",username);
 
         //1.获取subject主体对象
@@ -68,6 +69,10 @@ public class LoginController {
             }
 
         }
+
+        /**从数据库中获取数据*/
+        List<Post> lists = postMapper.queryAll();
+            request.setAttribute("lists",lists);
         return "MainPage/MainPage";
     }
 
@@ -124,7 +129,7 @@ public class LoginController {
         String header = "data:image/jepg;base64,";
         /**获取文件的实体部分*/
         String image = jsonObject.getString("value");
-        System.out.println(image.length());
+        String username = jsonObject.getString("username");
         /**剪切头部分*/
         image = image.substring(header.length());
         BASE64Decoder decoder = new BASE64Decoder();
@@ -132,13 +137,19 @@ public class LoginController {
             byte[] bytes = decoder.decodeBuffer(image);
             long time = System.currentTimeMillis();
             /**指定保存的路径*/
-            File path = new File("F:/temp/"+time+".jpg");
-            System.out.println(path);
+            String imageAddress = "F:/temp/"+time+".jpg";
+            File path = new File(imageAddress);
             FileOutputStream outputStream = new FileOutputStream(path);
             outputStream.write(bytes);
             outputStream.close();
 
-        return path.getAbsolutePath();
+        /**查询数据库修改图片的地址*/
+        User user = new User();
+        user.setUsername(username);
+        user.setImageAddress(imageAddress);
+        userMapper.updateImage(user);
+
+        return imageAddress;
     }
 
     /**服务器向浏览器发送图片*/
@@ -148,6 +159,7 @@ public class LoginController {
         JSONObject jsonObject = JSONObject.fromObject(path);
         /**获取文件的路径*/
         String paths = jsonObject.get("value").toString();
+        System.out.println(paths);
         File file = new File(paths);
         /**读取图片*/
         BufferedImage image = ImageIO.read(file);

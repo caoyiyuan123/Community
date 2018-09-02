@@ -60,13 +60,10 @@ public class RegisterController {
          * 最后用toHex()方法将加密后的密码转为String。
          */
         String newPwd = new SimpleHash("MD5",password,salt,1024).toHex();
-        System.out.println(newPwd);
         User user = new User();
         user.setUsername(username);
         user.setPassword(newPwd);
 
-        System.out.println(user.getUsername());
-        System.out.println(user.getPassword());
         userService.save(user);
         return "homePage/login";
     }
@@ -84,9 +81,9 @@ public class RegisterController {
         System.out.println(data);
         JSONObject dataObj = JSONObject.fromObject(data); //将json字符串转换为json对象
         String username = dataObj.get("username").toString();
-        System.out.println(username);
+
         User user = userService.findByName(username);
-        System.out.println(user);
+
 
         Map map = new HashMap();
         if(user == null){
@@ -100,7 +97,6 @@ public class RegisterController {
         }
 
         String json = JSONObject.fromObject(map).toString();
-        System.out.println(json);
 
 
         return json;
@@ -112,9 +108,8 @@ public class RegisterController {
         response.setHeader("Pragma","No-cache");
         response.setHeader("Cache-Controller","no-cache");
         response.setDateHeader("Expires",0);
-
+        System.out.println("************");
         response.setContentType("image/jpeg");
-        System.out.println("123456");
 
         //生成随机字符串
         String verifyCode = VerifyCodeUtils.generateVerifyCode(4);
@@ -139,10 +134,8 @@ public class RegisterController {
         String verifyCode = jsonObject.get("value").toString();
         String rand = session.getAttribute("rand").toString();
         if (rand.equalsIgnoreCase(verifyCode)) {
-            System.out.println("ojbk");
             return "true"; //输入的值与图片的值相同
         }else{
-            System.out.println("noOK");
             return "false";
         }
 

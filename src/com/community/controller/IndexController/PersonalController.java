@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Desc: 个人主页
  **/
 @Controller
+@RequestMapping("/personal")
 public class PersonalController {
-        @RequestMapping("/personal")
+
+    /**修改个人头像*/
+    @RequestMapping("/modifyImage")
     public String demo(){
-        return "PersonalHomepage/Personal";
+        return "PersonalHomepage/PersonalImage";
     }
 }

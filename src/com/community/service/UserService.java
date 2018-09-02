@@ -15,4 +15,5 @@ public interface UserService {
     int save(User user);
 
     User findByName(String username);
+
 }

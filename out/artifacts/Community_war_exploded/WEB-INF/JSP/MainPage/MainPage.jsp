@@ -59,46 +59,16 @@
                     </tr>
                 </thead>
                 <tbody>
+                <c:forEach items="${lists}" var="post">
                     <tr>
-                        <td class="id">1</td>
-                        <td class="title"><a href="${pageContext.request.contextPath}/content_check">足球</a></td>
-                        <td class="author">天下足球</td>
-                        <td class="click">102</td>
-                        <td class="answer">25</td>
-                        <td class="creatime">2018-08-08 15:30</td>
+                        <td class="id">${post.id}</td>
+                        <td class="title"><a href="${pageContext.request.contextPath}/loginSuccess/content_check?title=${post.title}">${post.title}</a></td>
+                        <td class="author">${post.author}</td>
+                        <td class="click">${post.clickNum}</td>
+                        <td class="answer">${post.comments}</td>
+                        <td class="creatime">${post.creatime}</td>
                     </tr>
-                    <tr>
-                        <td class="id">2</td>
-                        <td class="title">足球</td>
-                        <td class="author">天下足球</td>
-                        <td class="click">102</td>
-                        <td class="answer">25</td>
-                        <td class="creatime">2018-08-08 15:30</td>
-                    </tr>
-                    <tr>
-                        <td class="id">3</td>
-                        <td class="title">足球</td>
-                        <td class="author">天下足球</td>
-                        <td class="click">102</td>
-                        <td class="answer">25</td>
-                        <td class="creatime">2018-08-08 15:30</td>
-                    </tr>
-                    <tr>
-                        <td class="id">4</td>
-                        <td class="title">足球</td>
-                        <td class="author">天下足球</td>
-                        <td class="click">102</td>
-                        <td class="answer">25</td>
-                        <td class="creatime">2018-08-08 15:30</td>
-                    </tr>
-                    <tr>
-                        <td class="id">5</td>
-                        <td class="title">足球</td>
-                        <td class="author">天下足球</td>
-                        <td class="click">102</td>
-                        <td class="answer">25</td>
-                        <td class="creatime">2018-08-08 15:30</td>
-                    </tr>
+                </c:forEach>
                 </tbody>
 
             </table>

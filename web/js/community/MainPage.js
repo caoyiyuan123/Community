@@ -7,7 +7,7 @@ $(function () {
 function query_image() {
     var username = $(".welcome").html();
     var data = {value:username};
-    alert(JSON.stringify(data));
+    // alert(JSON.stringify(data));
     $.ajax({
         type:'POST',
         url:'/loginSuccess/queryImage',
@@ -15,11 +15,11 @@ function query_image() {
         data:JSON.stringify(data),
         dataType:'text',
         success:function (result) {
-            alert(result);
+            // alert("返回成功");
             $("#userImg").attr("src","data:image/jpg;base64,"+result);
         }
     })
 }
 
-/**单击头像跳转个人信息页面*/
+
 

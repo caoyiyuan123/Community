@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
     @RequestMapping("/AfterLogin")
     public String enter(){
-        System.out.println("123456");
         return "MainPage/MainPage";
     }
 }

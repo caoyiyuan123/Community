@@ -22,6 +22,12 @@
         select t_user.imageAddress from t_user
         where username = #{username}
     </select>
+
+    <update id="updateImage" parameterType="com.community.entity.User">
+        UPDATE t_user
+        set imageAddress=#{imageAddress}
+        where username=#{username}
+    </update>
 </mapper>
 
 

@@ -19,29 +19,32 @@
     </style>
 </head>
 <body>
-    <div class="title">标题</div>
+
+    <jsp:include page="../public/top/top.jsp"/>
+
+    <div class="title" id="title">${title}</div>
     <div class="content"  style="word-wrap: break-word;word-break: break-all;">
         <div class="mainBody">
-            <p>而且，我在自学古代典籍的过程中也不尽如人意，随着我阅读的经典越来越多，涉猎的流派越来越广，
-                我发现自己反而越来越迷茫了，就好像是陷入了一座看不到出口的迷宫。直到一次偶然的机会，我听
-                说了浏阳黄鉴老师的名字，那时候，黄老师已经被称为中国第一易学实战高手，一代宗师。</p>
-            <p>螺丝刀开关劣势就看到过</p>
-            <p>螺丝刀开关劣势就看到过</p>
-            <p>螺丝刀开关劣势就看到过</p>
-            <p>螺丝刀开关劣势就看到过</p>
-            <p>且这些秦桧、王氏谋害岳飞之类的事情，虽历史有此类人物，至于谋害，这实在说不过去。岳飞是赵构下旨处死的，
-                王氏一个宰相妻子，没参政权，如何处死得了岳飞？秦桧一介无军权的宰相，如何杀得了岳飞？张俊碰到岳飞下属举报，有人张宪想谋反，难道不抓？</p>
-
+            <%--<p>而且，我在自学古代典籍的过程中也不尽如人意，随着我阅读的经典越来越多，涉猎的流派越来越广，--%>
+                <%--我发现自己反而越来越迷茫了，就好像是陷入了一座看不到出口的迷宫。直到一次偶然的机会，我听--%>
+                <%--说了浏阳黄鉴老师的名字，那时候，黄老师已经被称为中国第一易学实战高手，一代宗师。</p>--%>
+            <%--<p>螺丝刀开关劣势就看到过</p>--%>
+            <%--<p>螺丝刀开关劣势就看到过</p>--%>
+            <%--<p>螺丝刀开关劣势就看到过</p>--%>
+            <%--<p>螺丝刀开关劣势就看到过</p>--%>
+            <%--<p>且这些秦桧、王氏谋害岳飞之类的事情，虽历史有此类人物，至于谋害，这实在说不过去。岳飞是赵构下旨处死的，--%>
+                <%--王氏一个宰相妻子，没参政权，如何处死得了岳飞？秦桧一介无军权的宰相，如何杀得了岳飞？张俊碰到岳飞下属举报，有人张宪想谋反，难道不抓？</p>--%>
+                ${content}
         </div>
         <div class="content_evaluation">
                     <p class="like" style="">
-                        <img id="like_img" src="../../../images/like.png"><br>
+                       <img id="like_img" src="../../../images/like.png" onclick="isClick();"><br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span id="like_num" style="font-size: larger">524</span>
+                        <span id="like_num" style="font-size: larger">${clickNum}</span>
                     </p>
                     <p style="text-align: right">
                         <a href="#write_comment"><span id="show_comment">评论</span></a>
-                        <span>(25)</span>&nbsp;&nbsp;&nbsp;
+                        <span>${comments}</span>&nbsp;&nbsp;&nbsp;
                         <a href="#"><span >举报</span>&nbsp;&nbsp;&nbsp;</a>
                      </p>
         </div>

@@ -12,11 +12,11 @@ public class User {
     private String password; //密码
     private String imageAddress; //用户头像
 
-    public String getImage() {
+    public String getImageAddress() {
         return imageAddress;
     }
 
-    public void setImage(String imageAddress) {
+    public void setImageAddress(String imageAddress) {
         this.imageAddress = imageAddress;
     }
 

@@ -12,7 +12,6 @@ import static org.junit.Assert.*;
 public class UserMapperTest {
 
 
-
     @Autowired
     private UserMapper userMapper;
 
@@ -51,4 +50,11 @@ public class UserMapperTest {
         System.out.println(address);
     }
 
+    @Test
+    public void updateImage() throws Exception {
+        User user = new User();
+        user.setUsername("一拳一个嘤嘤嘤");
+        user.setImageAddress("F:/temp/2.jpg");
+        userMapper.updateImage(user);
+    }
 }

@@ -17,5 +17,8 @@ public interface UserMapper {
     int add(User user);
     User findByName(String username);
     List<User> findAll();
+    /**查询头像*/
     String queryImage(String username);
+    /**更改头像*/
+    void updateImage(User user);
 }
