@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -41,7 +42,16 @@ public class UserImageController {
         return "public/updateImg/updateImage";
     }
 
+    /**
+     * 文件上传
+     * @param request
+     * @param response
+     * @param session:用来保存用户的相关信息
+     * @return
+     * @throws ServletException
+     */
     @RequestMapping(value = "/upload",method = RequestMethod.POST)
+    @ResponseBody
     public String upload(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException{
 
         String path = servletContext.getRealPath("\\")+"load";
@@ -71,6 +81,6 @@ public class UserImageController {
             e.printStackTrace();
         }
 
-        return null;
+        return "上传成功";
     }
 }

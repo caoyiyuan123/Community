@@ -4,8 +4,8 @@
         "http://mybatis.apache.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.community.mapper.PostMapper">
     <insert id="add" parameterType="com.community.entity.Post">
-        insert into post(title,author,content,clickNum,comments,creatime)
-        values(#{title},#{author},#{content},#{clickNum},#{comments},#{creatime})
+        insert into post(title,author,content,creatime)
+        values(#{title},#{author},#{content},#{creatime})
     </insert>
 
     <select id="queryPost" parameterType="String" resultType="com.community.entity.Post">
@@ -22,6 +22,19 @@
         set clickNum = #{clickNum}
         where title = #{title}
     </update>
+
+    <!--查询所有的记录总数-->
+    <select id="queryTotalCounts" resultType="Integer">
+        select count(*) from post
+    </select>
+
+    <!--查询所有的记录-->
+    <select id="queryPage" parameterType="com.community.Utils.PageUtils" resultType="com.community.entity.Post">
+        select * from post
+        <if test="count != null">
+            limit #{start},#{count}
+        </if>
+    </select>
 
 </mapper>
 

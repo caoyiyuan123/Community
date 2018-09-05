@@ -87,12 +87,9 @@ public class RegisterController {
 
         Map map = new HashMap();
         if(user == null){
-            System.out.println("该用户名可用");
-
             map.put("value","true");
 
         }else {
-            System.out.println("该用户名已存在");
             map.put("value","false");
         }
 

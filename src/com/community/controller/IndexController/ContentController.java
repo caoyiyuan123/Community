@@ -46,7 +46,7 @@ public class ContentController {
        request.setAttribute("title",tle);
        request.setAttribute("content",content);
        request.setAttribute("clickNum",likes);
-       request.setAttribute("comments",comments);
+       request.setAttribute("Comments",comments);
 
         return "MainPage/ContentPage";
     }
@@ -88,9 +88,5 @@ public class ContentController {
         return imageString;
     }
 
-    @RequestMapping("/top")
-    public String topDiv(){
-        return "top/top";
-    }
 }
 

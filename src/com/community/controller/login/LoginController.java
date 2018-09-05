@@ -1,11 +1,14 @@
 package com.community.controller.login;
 
+import com.community.Utils.PageUtils;
 import com.community.Utils.VerifyCodeUtils;
 import com.community.entity.Post;
 import com.community.entity.User;
 import com.community.mapper.PostMapper;
 import com.community.mapper.UserMapper;
 import net.sf.json.JSONObject;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -21,16 +24,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
  * @Author: jack
  * @Create: 2018-08-19-19:34
- * @Desc:
+ * @Desc: 相关登录的操作
  **/
 @Controller
 @RequestMapping("/login")
 public class LoginController {
+
+    private static final Logger logger = LogManager.getLogger(LoginController.class);
 
     @Autowired(required = false)
     private UserMapper userMapper;
@@ -43,6 +50,7 @@ public class LoginController {
         return "homePage/login";
     }
 
+    /**从登录页面到主页面*/
     @RequestMapping("/loginCheck")
     public String loinSuccess(HttpServletRequest request,HttpSession session) throws UnsupportedEncodingException {
         request.setCharacterEncoding("utf-8");
@@ -51,8 +59,7 @@ public class LoginController {
         String password = request.getParameter("pwd");
 
         /**利用Session取得用户名和密码*/
-         session = request.getSession();
-               session.setAttribute("username",username);
+        session.setAttribute("username",username);
 
         //1.获取subject主体对象
         Subject subject = SecurityUtils.getSubject();
@@ -62,17 +69,64 @@ public class LoginController {
             //3.主体对象执行登录功能
             try{
                 subject.login(token);
-                System.out.println("登录成功");
+                logger.info("登录成功");
             }catch (Exception e){
-                System.out.println("登录失败");
+                logger.error("登录失败");
                 return "errorPage/error";
             }
 
         }
+        return "redirect:/login/loginSuccess";
+    }
 
+
+    /**保存发布的文章*/
+    @RequestMapping("/saveContent")
+    public String saveContent(HttpSession session,HttpServletRequest request) throws UnsupportedEncodingException {
+
+        request.setCharacterEncoding("UTF-8");
+        String username = session.getAttribute("username").toString();
+        String title = request.getParameter("title");
+        String comment = request.getParameter("comment");
+        logger.info(title);
+        logger.info(comment);
+        logger.info(username);
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String newDate = sdf.format(date);
+        logger.info(newDate);
+        Post post = new Post();
+        post.setTitle(title);
+        post.setContent(comment);
+        post.setAuthor(username);
+        post.setCreatime(newDate);
+        postMapper.add(post);
+        return "redirect:/login/loginSuccess";
+
+    }
+
+
+    /**进行分页*/
+    @RequestMapping("/loginSuccess")
+    public String loginSuccess(@RequestParam(value="CurrentPage",defaultValue = "1", required=false) String CurrentPage,
+                               HttpServletRequest request){
         /**从数据库中获取数据*/
-        List<Post> lists = postMapper.queryAll();
-            request.setAttribute("lists",lists);
+        String count = "5";
+        Integer size = 5;
+        PageUtils page = new PageUtils(5,5);
+        int totalCounts = postMapper.queryTotalCounts();
+        logger.info(totalCounts);
+        page.setTotalCounts(totalCounts);
+        logger.info(CurrentPage);
+        page.setCurPage(CurrentPage);
+        request.setAttribute("page",page);
+
+        List<Post> lists = postMapper.queryPage(page);
+        request.setAttribute("size",page.getSize());
+        request.setAttribute("begin",page.getBegin());
+        request.setAttribute("end",page.getEnd());
+        request.setAttribute("list",lists);
+        request.setAttribute("currentPage",page.getCurPage());
         return "MainPage/MainPage";
     }
 
@@ -111,7 +165,6 @@ public class LoginController {
         if (rand.equalsIgnoreCase(verifyCode)) {
             return "true"; //输入的值与图片的值相同
         }else{
-            System.out.println("noOK");
             return "false";
         }
 

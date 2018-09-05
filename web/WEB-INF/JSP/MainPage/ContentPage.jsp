@@ -14,8 +14,25 @@
     <script type="text/javascript" src="../../../js/jquery-1.11.1.js"></script>
     <script type="text/javascript" src="../../../js/community/comment.js"></script>
 
-    <style>
 
+    <style>
+        #userImg{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            position: relative;
+            left:-20px;
+            top:20px;
+        }
+
+        .username{
+            position: relative;
+            left:10px;
+            top:0px;
+            font-family: "微软雅黑", sans-serif;
+            font-size: 15px;
+            color:black;
+        }
     </style>
 </head>
 <body>
@@ -25,15 +42,6 @@
     <div class="title" id="title">${title}</div>
     <div class="content"  style="word-wrap: break-word;word-break: break-all;">
         <div class="mainBody">
-            <%--<p>而且，我在自学古代典籍的过程中也不尽如人意，随着我阅读的经典越来越多，涉猎的流派越来越广，--%>
-                <%--我发现自己反而越来越迷茫了，就好像是陷入了一座看不到出口的迷宫。直到一次偶然的机会，我听--%>
-                <%--说了浏阳黄鉴老师的名字，那时候，黄老师已经被称为中国第一易学实战高手，一代宗师。</p>--%>
-            <%--<p>螺丝刀开关劣势就看到过</p>--%>
-            <%--<p>螺丝刀开关劣势就看到过</p>--%>
-            <%--<p>螺丝刀开关劣势就看到过</p>--%>
-            <%--<p>螺丝刀开关劣势就看到过</p>--%>
-            <%--<p>且这些秦桧、王氏谋害岳飞之类的事情，虽历史有此类人物，至于谋害，这实在说不过去。岳飞是赵构下旨处死的，--%>
-                <%--王氏一个宰相妻子，没参政权，如何处死得了岳飞？秦桧一介无军权的宰相，如何杀得了岳飞？张俊碰到岳飞下属举报，有人张宪想谋反，难道不抓？</p>--%>
                 ${content}
         </div>
         <div class="content_evaluation">
@@ -52,7 +60,10 @@
     <div class="comment">
 
                 <div class="comment_username">
-                    <span>用户名</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span>
+                        <img id="userImg" class="userImg" name="" src="../../../images/user_images1535105510944.jpg">
+                    </span>
+                    <span class="username">${sessionScope.username}</span>&nbsp;&nbsp;&nbsp;&nbsp;
                     <span>2018-09-05:15:32:58</span>
                 </div>
                 <div class="comment_content">
@@ -67,15 +78,17 @@
                 <%--<hr style="border:1px solid cornflowerblue">--%>
     </div>
     <div class="writeComment" id="write_comment">
-        <textarea class="input_box">
+        <form action="${pageContext.request.contextPath}/comment/sendContent" method="post">
+            <textarea class="input_box" name="content"></textarea>
+            <div class="commit">
+                <%--<span>提交</span>--%>
+                <%--<span>撤销</span>--%>
+                <input type="submit" value="提交">
+                <button style="margin-left: 30px" onclick="window.history.back()">撤销</button>
+            </div>
+        </form>
 
-        </textarea>
-        <div class="commit">
-            <%--<span>提交</span>--%>
-            <%--<span>撤销</span>--%>
-            <button>提交</button>
-            <button style="margin-left: 30px" onclick="window.history.back()">撤销</button>
-        </div>
+
     </div>
 
 </body>

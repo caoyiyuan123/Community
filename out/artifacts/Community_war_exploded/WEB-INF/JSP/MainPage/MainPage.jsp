@@ -35,7 +35,7 @@
 <div class="search">
     <input class="search_context" type="text" value="" placeholder="你想知道的这里都有">
     <input class="search_button" type="button" value=""/>
-    <a href="${pageContext.request.contextPath}/personal/modifyImage"><img class="userImg" id="userImg" src=""></a>
+    <a href="${pageContext.request.contextPath}/update/ModifyImage"><img class="userImg" id="userImg" src=""></a>
     <span class="welcome">${sessionScope.username}</span>
     <%--<button class="login_btn"><a href="${pageContext.request.contextPath}/login">登录</a></button>--%>
     <%--<button class="register_btn"><a href="${pageContext.request.contextPath}/register">注册</a></button>--%>
@@ -59,7 +59,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${lists}" var="post">
+                <c:forEach items="${list}" var="post">
                     <tr>
                         <td class="id">${post.id}</td>
                         <td class="title"><a href="${pageContext.request.contextPath}/loginSuccess/content_check?title=${post.title}">${post.title}</a></td>
@@ -70,7 +70,6 @@
                     </tr>
                 </c:forEach>
                 </tbody>
-
             </table>
         </div>
     </form>
@@ -78,14 +77,6 @@
 </div>
 <!--主要区域结束-->
 <!--底部分页-->
-<div class="pages">
-    <button><a href="http://lol.qq.com/">首页</a></button>
-    <button><a href="http://lol.qq.com/">上一页</a></button>
-    <button><a href="http://lol.qq.com/">1</a></button>
-    <button><a href="http://lol.qq.com/">2</a></button>
-    <button><a href="http://lol.qq.com/">3</a></button>
-    <button><a href="http://lol.qq.com/">下一页</a></button>
-    <button><a href="http://lol.qq.com/">尾页</a></button>
-</div>
+    <jsp:include page="../public/pagination/pagination.jsp"/>
 </body>
 </html>

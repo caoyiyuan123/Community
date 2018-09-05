@@ -12,10 +12,14 @@
     <link type="text/css" rel="stylesheet" href="../../../styles/personal/personal.css">
 </head>
 <body>
-    <form action="">
-        <div class="title">帖子标题</div>
+
+    <jsp:include page="../public/top/top.jsp"/>
+    <form action="${pageContext.request.contextPath}/login/saveContent">
+        <div class="title">
+            <input id="title" name="title" type="text"/>
+        </div>
         <div class="content">
-            <textarea class="comment" placeholder="请输入内容">
+            <textarea class="comment" name="comment" placeholder="请输入内容">
                 请输入内容，字数不限
             </textarea>
         </div>

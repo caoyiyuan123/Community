@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.*;
 
 /**
@@ -22,11 +23,12 @@ public class TopController {
     private UserMapper userMapper;
 
     @RequestMapping("/queryImage")
-    public void queryImg(@RequestParam("username") String username, HttpServletResponse response) throws IOException {
+    public void queryImg(HttpServletResponse response,
+                         HttpSession session) throws IOException {
         response.setContentType("html/text;charset=utf-8");
-
+        String username = session.getAttribute("username").toString();
+        /**根据用户名查询用户的头像*/
         String imageAddress = userMapper.queryImage(username);
-        System.out.println(imageAddress);
         File file = new File(imageAddress);
         FileInputStream fis = new FileInputStream(file);
         OutputStream out = response.getOutputStream();

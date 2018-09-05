@@ -1,5 +1,6 @@
 package com.community.mapper;
 
+import com.community.Utils.PageUtils;
 import com.community.entity.Post;
 import org.springframework.stereotype.Repository;
 
@@ -20,4 +21,10 @@ public interface PostMapper {
 
     /**修改点赞的数量*/
     void updateLikesNums(Post post);
+
+    /**查询所有的记录总数*/
+    int queryTotalCounts();
+
+    /**分页查询*/
+    List<Post> queryPage(PageUtils page);
 }

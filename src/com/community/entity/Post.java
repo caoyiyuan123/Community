@@ -81,7 +81,7 @@ public class Post {
                 ", content='" + content + '\'' +
                 ", author='" + author + '\'' +
                 ", clickNum=" + clickNum +
-                ", comments=" + comments +
+                ", Comments=" + comments +
                 ", creatime='" + creatime + '\'' +
                 '}';
     }

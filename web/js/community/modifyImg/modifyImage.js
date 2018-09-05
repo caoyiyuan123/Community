@@ -1,7 +1,11 @@
 $(function () {
     queryLargerImg();
+
 });
 
+$("#formData").ajaxForm(function (data) {
+    alert("123");
+});
 
 /**查询数据库该用户是否有头像*/
 function queryLargerImg() {
@@ -20,7 +24,6 @@ function queryLargerImg() {
 
 /**图片预览*/
 function preview(file) {
-    alert("我进入了方法");
     var reader = new FileReader();
     reader.onload = function (e) {
     //     var list = document.getElementsByName('img');
@@ -32,8 +35,6 @@ function preview(file) {
         document.getElementById('largerImg').src = e.target.result;
         document.getElementById('mediumImg').src = e.target.result;
         document.getElementById('smallImg').src = e.target.result;
-
-
         };
 
     reader.readAsDataURL(file.files[0]);
